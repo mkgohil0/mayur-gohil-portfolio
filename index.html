@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mayur Gohil | Tech Creator &amp; Hardware Explorer</title>
+<meta name="description" content="Portfolio of Mayur Gohil — B.Tech IT student, tech content creator and hardware troubleshooting expert behind MKG Tech." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%238b5cf6'/%3E%3Ctext x='50' y='67' font-size='46' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EMG%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+/* ============================= RESET ============================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+img{max-width:100%;display:block;}
+button,input,textarea,select{font:inherit;color:inherit;}
+button{cursor:pointer;background:none;border:none;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+/* ============================= TOKENS ============================= */
+:root{
+  --void:#06040f;
+  --bg:#0a0818;
+  --bg-alt:#100b23;
+  --surface:rgba(255,255,255,0.035);
+  --surface-2:rgba(255,255,255,0.065);
+  --surface-solid:#150f2c;
+  --border:rgba(167,139,250,0.18);
+  --border-soft:rgba(255,255,255,0.08);
+
+  --violet-300:#c4b5fd;
+  --violet-400:#a78bfa;
+  --violet-500:#8b5cf6;
+  --violet-600:#7c3aed;
+  --indigo-400:#818cf8;
+  --indigo-500:#6366f1;
+  --teal-500:#14b8a6;
+  --amber-500:#f59e0b;
+  --rose-500:#fb7185;
+  --sky-500:#38bdf8;
+  --emerald-500:#34d399;
+
+  --text-1:#f6f4ff;
+  --text-2:#b9b2d9;
+  --text-3:#847dab;
+
+  --gradient-brand:linear-gradient(135deg,#a78bfa 0%,#8b5cf6 45%,#6366f1 100%);
+  --gradient-brand-soft:linear-gradient(135deg,rgba(167,139,250,0.18),rgba(99,102,241,0.10));
+  --glow-violet:0 0 50px rgba(139,92,246,0.30);
+  --shadow-card:0 10px 40px rgba(4,2,15,0.45);
+
+  --radius-lg:22px;
+  --radius-md:16px;
+  --radius-sm:10px;
+  --container:1280px;
+
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+
+html[data-theme="light"]{
+  --void:#eee9fb;
+  --bg:#f7f5ff;
+  --bg-alt:#ffffff;
+  --surface:rgba(124,58,237,0.045);
+  --surface-2:rgba(124,58,237,0.08);
+  --surface-solid:#ffffff;
+  --border:rgba(124,58,237,0.18);
+  --border-soft:rgba(15,10,40,0.08);
+  --text-1:#170f2e;
+  --text-2:#4c4570;
+  --text-3:#7d7599;
+  --shadow-card:0 10px 30px rgba(90,70,160,0.10);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+  html{scroll-behavior:auto;}
+}
+
+/* ============================= BASE ============================= */
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text-1);
+  line-height:1.6;
+  overflow-x:hidden;
+  position:relative;
+  transition:background .3s ease,color .3s ease;
+}
+.bg-decor{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--void);}
+.bg-decor::before,.bg-decor::after{content:'';position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:.35;}
+.bg-decor::before{background:var(--violet-600);top:-200px;left:-150px;}
+.bg-decor::after{background:var(--indigo-500);bottom:-250px;right:-150px;}
+html[data-theme="light"] .bg-decor::before,html[data-theme="light"] .bg-decor::after{opacity:.14;}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 24px;}
+:focus-visible{outline:2px solid var(--violet-400);outline-offset:3px;border-radius:4px;}
+
+h1,h2,h3,.font-display{font-family:var(--font-display);}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet-400);font-weight:600;}
+
+.section{padding:64px 0;}
+.section-inner{max-width:var(--container);margin:0 auto;padding:0 24px;}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:var(--radius-lg);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:var(--shadow-card);
+}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 24px;border-radius:999px;
+  font-weight:600;font-size:.94rem;
+  transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--gradient-brand);color:#fff;box-shadow:0 8px 24px rgba(124,58,237,.35);}
+.btn-primary:hover{box-shadow:0 12px 30px rgba(124,58,237,.5);}
+.btn-outline{background:transparent;border:1.5px solid var(--border-soft);color:var(--text-1);}
+.btn-outline:hover{border-color:var(--violet-400);background:var(--surface-2);}
+.btn-sm{padding:9px 16px;font-size:.82rem;}
+.btn-block{width:100%;justify-content:center;}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;}
+
+.link-more{font-size:.85rem;font-weight:600;color:var(--violet-400);display:inline-flex;align-items:center;gap:6px;}
+.link-more:hover{color:var(--violet-300);}
+
+/* ============================= NAVBAR ============================= */
+.navbar{position:sticky;top:0;z-index:40;background:rgba(10,8,24,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border-soft);}
+html[data-theme="light"] .navbar{background:rgba(255,255,255,.78);}
+.nav-inner{max-width:var(--container);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;}
+.brand-logo{width:44px;height:44px;border-radius:12px;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 6px 18px rgba(124,58,237,.4);}
+.brand-text{min-width:0;}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:1.02rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.brand-tagline{font-size:.72rem;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--text-2);position:relative;padding:6px 0;transition:color .2s ease;}
+.nav-links a:hover{color:var(--text-1);}
+.nav-links a.active{color:var(--text-1);}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--gradient-brand);border-radius:2px;}
+
+.nav-actions{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.icon-btn{width:42px;height:42px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background .2s ease,transform .2s ease;}
+.icon-btn:hover{background:var(--surface);transform:translateY(-1px);}
+.hamburger{display:none;}
+
+@media (max-width:920px){
+  .nav-links{position:fixed;top:73px;left:0;right:0;background:var(--surface-solid);flex-direction:column;align-items:flex-start;gap:2px;padding:14px 24px 20px;border-bottom:1px solid var(--border-soft);transform:translateY(-130%);opacity:0;transition:transform .25s ease, opacity .25s ease;z-index:39;}
+  .nav-links.open{transform:translateY(0);opacity:1;}
+  .nav-links a{width:100%;padding:10px 0;}
+  .brand-tagline{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* ============================= HERO ============================= */
+.hero{padding:56px 0 40px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr .85fr;gap:36px;align-items:center;}
+.badge-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--violet-300);margin-bottom:22px;}
+.hero-title{font-size:clamp(2.6rem,5.4vw,4.4rem);font-weight:700;line-height:1.03;letter-spacing:-.02em;margin-bottom:18px;}
+.hero-title .line2{background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;}
+.hero-subtitle{font-size:1.18rem;font-weight:600;color:var(--text-1);margin-bottom:6px;}
+.hero-tagline{font-size:.96rem;color:var(--text-3);margin-bottom:18px;}
+.hero-desc{color:var(--text-2);max-width:46ch;margin-bottom:30px;font-size:.98rem;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px;}
+.social-row{display:flex;gap:12px;}
+.social-icon{width:42px;height:42px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:1.05rem;transition:transform .2s ease, background .2s ease, color .2s ease;}
+.social-icon:hover{transform:translateY(-3px);background:var(--gradient-brand);color:#fff;}
+
+/* avatar signature element */
+.avatar-stage{position:relative;width:min(360px,86%);margin:0 auto;aspect-ratio:1/1.18;display:flex;align-items:flex-start;justify-content:center;}
+.avatar-circle{position:relative;width:80%;aspect-ratio:1;border-radius:50%;background:var(--gradient-brand-soft);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--glow-violet);z-index:3;}
+.avatar-initials{font-family:var(--font-display);font-size:clamp(2.6rem,7vw,4rem);font-weight:700;background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none;}
+.avatar-img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.ring-outer{position:absolute;inset:-6%;border-radius:50%;border:1.5px solid rgba(167,139,250,.38);z-index:1;}
+.ring-dash{position:absolute;inset:-15%;border-radius:50%;border:1.5px dashed rgba(167,139,250,.28);z-index:1;animation:spin 30s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.avatar-platform{position:absolute;bottom:-4%;left:50%;transform:translateX(-50%);width:96%;height:15%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(139,92,246,.55),rgba(99,102,241,.14) 60%,transparent 76%);filter:blur(2px);box-shadow:0 0 70px 12px rgba(139,92,246,.32);z-index:0;}
+
+/* info card */
+.info-card{padding:8px;display:flex;flex-direction:column;gap:8px;}
+.info-row{display:flex;align-items:flex-start;gap:14px;padding:14px;border-radius:var(--radius-md);transition:background .2s ease;}
+.info-row:hover{background:var(--surface-2);}
+.info-icon{width:42px;height:42px;border-radius:12px;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0;}
+.info-label{font-size:.72rem;color:var(--text-3);margin-bottom:2px;}
+.info-value{font-weight:700;font-size:.95rem;}
+.info-sub{font-size:.78rem;color:var(--text-3);}
+
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;text-align:center;}
+  .hero-desc{margin-left:auto;margin-right:auto;}
+  .hero-actions,.social-row{justify-content:center;}
+  .avatar-stage{order:-1;margin-bottom:10px;}
+  .info-card{max-width:420px;margin:0 auto;}
+}
+
+/* ============================= SERVICES STRIP ============================= */
+.services-strip{margin-top:8px;}
+.services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:26px 8px;}
+.service-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-right:1px solid var(--border-soft);}
+.service-item:last-child{border-right:none;}
+.service-icon{width:52px;height:52px;border-radius:14px;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;flex-shrink:0;}
+.service-title{font-weight:700;font-size:.94rem;margin-bottom:4px;}
+.service-desc{font-size:.78rem;color:var(--text-3);line-height:1.45;}
+
+@media (max-width:1080px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .service-item{border-right:none;border-bottom:1px solid var(--border-soft);}
+}
+@media (max-width:560px){.services-grid{grid-template-columns:1fr;}}
+
+/* ============================= CONTENT GRID ============================= */
+.content-grid{display:grid;grid-template-columns:.85fr 1.1fr 1fr;gap:24px;align-items:start;}
+.panel{padding:24px;}
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.panel-title{font-size:1.15rem;font-weight:700;}
+
+.about-avatar{width:96px;height:96px;border-radius:50%;background:var(--gradient-brand-soft);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden;}
+.about-avatar .avatar-initials{font-size:1.7rem;}
+.about-text{color:var(--text-2);font-size:.92rem;margin-bottom:6px;}
+.about-extra{color:var(--text-2);font-size:.92rem;margin-bottom:14px;display:none;}
+.about-extra.show{display:block;}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px;}
+.chip{font-size:.72rem;padding:6px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border-soft);color:var(--text-2);}
+
+.skill-row{margin-bottom:16px;}
+.skill-top{display:flex;justify-content:space-between;font-size:.86rem;margin-bottom:7px;}
+.skill-name{font-weight:600;}
+.skill-pct{color:var(--violet-400);font-weight:700;}
+.skill-track{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;}
+.skill-fill{height:100%;border-radius:999px;background:var(--gradient-brand);width:0%;transition:width 1.1s cubic-bezier(.2,.8,.2,1);}
+.brain-stage{position:relative;height:150px;display:flex;align-items:center;justify-content:center;margin-top:6px;}
+.brain-icon{font-size:4.4rem;background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(139,92,246,.5));z-index:1;}
+.brain-platform{position:absolute;bottom:6px;width:64%;height:20px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(139,92,246,.55),transparent 72%);filter:blur(2px);}
+
+.project-item{display:flex;gap:14px;padding:14px;border-radius:var(--radius-md);background:var(--surface-2);border:1px solid var(--border-soft);margin-bottom:14px;}
+.project-thumb{width:60px;height:60px;border-radius:14px;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;flex-shrink:0;}
+.project-title{font-weight:700;font-size:.92rem;margin-bottom:4px;line-height:1.3;}
+.project-desc{font-size:.78rem;color:var(--text-3);margin-bottom:10px;}
+
+@media (max-width:1080px){.content-grid{grid-template-columns:1fr;}}
+
+/* ============================= STATS BAR ============================= */
+.stats-bar{background:var(--surface);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);padding:22px 0;}
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.stat-item{display:flex;align-items:center;gap:12px;}
+.stat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:#fff;flex-shrink:0;}
+.stat-value{font-family:var(--font-display);font-weight:700;font-size:1.15rem;line-height:1.1;}
+.stat-label{font-size:.75rem;color:var(--text-3);}
+@media (max-width:920px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:480px){.stats-grid{grid-template-columns:1fr;}}
+
+/* achievements ticker */
+.achievements-strip{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:20px 0;}
+.achv-chip{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;padding:8px 16px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border-soft);color:var(--text-2);}
+.achv-chip i{color:var(--amber-500);}
+
+/* custom sections */
+.custom-sections{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.custom-card{padding:22px;}
+.custom-card h3{font-size:1.02rem;margin-bottom:8px;}
+.custom-card p{font-size:.88rem;color:var(--text-2);}
+
+/* ============================= CONTACT ============================= */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;}
+.contact-info-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:.8rem;color:var(--text-3);margin-bottom:6px;display:block;}
+.field{width:100%;padding:12px 14px;border-radius:var(--radius-sm);background:var(--surface-2);border:1px solid var(--border-soft);color:var(--text-1);font-size:.92rem;transition:border-color .2s ease;}
+.field:focus{border-color:var(--violet-400);}
+textarea.field{resize:vertical;min-height:100px;}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+
+/* ============================= FOOTER ============================= */
+.site-footer{padding:26px 0;text-align:center;color:var(--text-3);font-size:.82rem;border-top:1px solid var(--border-soft);}
+
+/* ============================= TOASTS ============================= */
+.toast-container{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:10px;align-items:center;}
+.toast{background:var(--surface-solid);border:1px solid var(--border);color:var(--text-1);padding:12px 20px;border-radius:999px;font-size:.85rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;align-items:center;gap:8px;animation:toast-in .25s ease;}
+.toast i{color:var(--emerald-500);}
+@keyframes toast-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============================= ADMIN PANEL ============================= */
+.admin-overlay{position:fixed;inset:0;z-index:100;visibility:hidden;pointer-events:none;}
+.admin-overlay.open{visibility:visible;pointer-events:auto;}
+.admin-backdrop{position:absolute;inset:0;background:rgba(4,2,14,.55);opacity:0;transition:opacity .25s ease;backdrop-filter:blur(2px);}
+.admin-overlay.open .admin-backdrop{opacity:1;}
+.admin-drawer{position:absolute;top:0;right:0;height:100%;width:min(960px,94vw);background:var(--surface-solid);border-left:1px solid var(--border-soft);box-shadow:-20px 0 60px rgba(0,0,0,.45);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);}
+.admin-overlay.open .admin-drawer{transform:translateX(0);}
+.admin-header{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;border-bottom:1px solid var(--border-soft);flex-shrink:0;}
+.admin-header h2{font-size:1.2rem;}
+.admin-body{flex:1;display:flex;overflow:hidden;}
+.admin-sidebar{width:210px;flex-shrink:0;border-right:1px solid var(--border-soft);padding:18px 12px;display:flex;flex-direction:column;overflow-y:auto;}
+.admin-nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);font-size:.88rem;font-weight:500;color:var(--text-2);width:100%;text-align:left;margin-bottom:2px;}
+.admin-nav-item i{width:18px;text-align:center;}
+.admin-nav-item:hover{background:var(--surface-2);color:var(--text-1);}
+.admin-nav-item.active{background:var(--gradient-brand);color:#fff;}
+.admin-preview-btn{margin:14px 6px 4px;}
+.admin-main{flex:1;overflow-y:auto;padding:26px;}
+.admin-view{display:none;}
+.admin-view.active{display:block;animation:fade-in .2s ease;}
+@keyframes fade-in{from{opacity:0;}to{opacity:1;}}
+
+.dash-welcome{margin-bottom:22px;}
+.dash-welcome h3{font-size:1.3rem;margin-bottom:4px;}
+.dash-welcome p{color:var(--text-3);font-size:.88rem;}
+.dash-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;}
+.dash-stat{padding:16px;border-radius:var(--radius-md);background:var(--surface-2);border:1px solid var(--border-soft);}
+.dash-stat .n{font-family:var(--font-display);font-weight:700;font-size:1.4rem;}
+.dash-stat .l{font-size:.72rem;color:var(--text-3);}
+.section-label{font-size:.9rem;font-weight:700;margin-bottom:12px;}
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px;}
+.qa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:var(--radius-md);color:#fff;font-weight:600;font-size:.88rem;text-align:left;}
+.qa-btn:hover{filter:brightness(1.08);}
+.qa-violet{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
+.qa-indigo{background:linear-gradient(135deg,#6366f1,#4f46e5);}
+.qa-teal{background:linear-gradient(135deg,#14b8a6,#0d9488);}
+.qa-amber{background:linear-gradient(135deg,#f59e0b,#d97706);}
+
+.custom-sections-manage{display:flex;flex-direction:column;gap:8px;}
+.cs-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:var(--radius-sm);background:var(--surface-2);border:1px solid var(--border-soft);font-size:.85rem;}
+.cs-row button{color:var(--rose-500);font-size:.95rem;}
+.empty-note{color:var(--text-3);font-size:.83rem;font-style:italic;}
+
+.edit-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-bottom:20px;}
+@media (max-width:700px){.edit-grid{grid-template-columns:1fr;}}
+.avatar-edit-preview{width:120px;height:120px;border-radius:50%;overflow:hidden;background:var(--gradient-brand-soft);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.avatar-edit-preview .avatar-initials{font-size:2rem;}
+
+.manage-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.manage-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px;border-radius:var(--radius-md);background:var(--surface-2);border:1px solid var(--border-soft);}
+.manage-row.wide{grid-template-columns:1fr;}
+.manage-row .fields{display:flex;flex-direction:column;gap:8px;}
+.manage-row .fields.row2{flex-direction:row;}
+.row-icon-select{width:120px;flex-shrink:0;}
+.pct-input{width:80px;text-align:center;flex-shrink:0;}
+.icon-del{color:var(--rose-500);font-size:1rem;padding:8px;flex-shrink:0;}
+.icon-del:hover{color:#f43f5e;}
+.add-row-card{padding:16px;border-radius:var(--radius-md);border:1.5px dashed var(--border);}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media (max-width:600px){.form-grid-2{grid-template-columns:1fr;}}
+
+.settings-danger{margin-top:30px;padding-top:20px;border-top:1px solid var(--border-soft);}
+.settings-danger p{font-size:.82rem;color:var(--text-3);margin-bottom:12px;}
+.btn-danger{background:rgba(244,63,94,.12);color:#fb7185;border:1px solid rgba(244,63,94,.3);}
+.btn-danger:hover{background:rgba(244,63,94,.2);}
+
+@media (max-width:640px){
+  .admin-sidebar{width:64px;padding:14px 6px;}
+  .admin-nav-item span{display:none;}
+  .admin-nav-item{justify-content:center;}
+  .admin-preview-btn span{display:none;}
+  .dash-stats-grid{grid-template-columns:repeat(2,1fr);}
+  .quick-actions{grid-template-columns:1fr;}
+}
+
+/* ============================= MISC RESPONSIVE ============================= */
+@media (max-width:640px){
+  .hero-title{font-size:2.6rem;}
+  .section{padding:44px 0;}
+}
+
+/* ============================= PREMIUM GLASS + 3D UI ============================= */
+:root{
+  --glass-bg:rgba(255,255,255,.055);
+  --glass-bg-strong:rgba(255,255,255,.09);
+  --glass-shadow:0 22px 70px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.09);
+}
+body{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(139,92,246,.13),transparent 32%),
+    radial-gradient(circle at 85% 80%,rgba(56,189,248,.08),transparent 30%),var(--bg);
+}
+.card,.glass-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:var(--glass-shadow);
+  position:relative;overflow:hidden;
+}
+.card::before,.glass-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.10),transparent 25%,transparent 70%,rgba(167,139,250,.045));
+}
+.info-icon,.service-icon,.project-thumb,.stat-icon,.brand-logo{
+  transform:perspective(700px) rotateX(7deg) rotateY(-9deg);
+  box-shadow:0 14px 26px rgba(0,0,0,.28),inset 0 1px 1px rgba(255,255,255,.32),inset 0 -8px 16px rgba(0,0,0,.14);
+  transition:transform .25s ease,filter .25s ease,box-shadow .25s ease;
+}
+.info-icon:hover,.service-icon:hover,.project-thumb:hover,.stat-icon:hover,.brand-logo:hover{
+  transform:perspective(700px) rotateX(0) rotateY(0) translateY(-5px) scale(1.06);
+  filter:saturate(1.2);
+  box-shadow:0 20px 38px rgba(124,58,237,.34),inset 0 1px 1px rgba(255,255,255,.4);
+}
+.social-icon,.icon-btn,.badge-pill,.chip,.achv-chip,.field,.dash-stat,.project-item,.cs-row,.add-row-card{
+  background:rgba(255,255,255,.045);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+.service-icon i,.info-icon i,.project-thumb i,.stat-icon i{filter:drop-shadow(0 3px 3px rgba(0,0,0,.28));}
+.avatar-circle{box-shadow:0 0 60px rgba(139,92,246,.34),inset 0 1px 0 rgba(255,255,255,.2);}
+.admin-drawer{
+  background:linear-gradient(145deg,rgba(21,15,44,.94),rgba(10,8,24,.94));
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+}
+.admin-header,.admin-sidebar{background:rgba(255,255,255,.025);}
+.btn-primary{position:relative;overflow:hidden;}
+.btn-primary::after{
+  content:"";position:absolute;inset:-40% -80%;
+  background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);
+  transform:translateX(-45%) rotate(8deg);transition:transform .6s ease;pointer-events:none;
+}
+.btn-primary:hover::after{transform:translateX(45%) rotate(8deg);}
+@media (prefers-reduced-motion:reduce){
+  .info-icon,.service-icon,.project-thumb,.stat-icon,.brand-logo{transform:none!important}
+}
+
+
+.admin-login{
+  position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:20px;
+  background:rgba(3,2,12,.68);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  opacity:0;visibility:hidden;pointer-events:none;transition:.25s ease;
+}
+.admin-login.open{opacity:1;visibility:visible;pointer-events:auto}
+.admin-login-card{width:min(430px,100%);padding:30px;border-radius:26px;text-align:center}
+.login-logo{
+  width:62px;height:62px;margin:0 auto 16px;border-radius:20px;display:grid;place-items:center;color:#fff;font-size:1.45rem;
+  background:var(--gradient-brand);box-shadow:0 16px 35px rgba(124,58,237,.35),inset 0 1px 0 rgba(255,255,255,.35);
+  transform:perspective(500px) rotateX(8deg) rotateY(-8deg);
+}
+.admin-login-card h2{font-size:1.55rem;margin:7px 0 4px}
+.admin-login-card>p{font-size:.84rem;color:var(--text-3);margin-bottom:20px}
+.password-wrap{position:relative}.password-wrap .field{padding-right:46px}
+.password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:9px;color:var(--text-3)}
+.password-toggle:hover{color:var(--text-1);background:var(--surface-2)}
+.login-error{min-height:20px;color:var(--rose-500);font-size:.78rem;text-align:left;margin:6px 0}
+
+
+/* PERSONAL PORTFOLIO CHATBOT */
+.chat-launch{position:fixed;right:22px;bottom:22px;z-index:180;width:58px;height:58px;border-radius:20px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(135deg,#8b5cf6,#4f46e5);color:#fff;box-shadow:0 16px 40px rgba(76,29,149,.45),inset 0 1px rgba(255,255,255,.3);font-size:21px;cursor:pointer;transition:.2s}
+.chat-launch:hover{transform:translateY(-4px)}
+.chat-window{position:fixed;right:22px;bottom:92px;z-index:181;width:min(390px,calc(100vw - 28px));height:min(590px,calc(100vh - 120px));display:none;flex-direction:column;overflow:hidden;border-radius:25px;background:linear-gradient(145deg,rgba(19,14,42,.97),rgba(7,8,18,.97));border:1px solid rgba(255,255,255,.14);box-shadow:0 35px 100px rgba(0,0,0,.58);backdrop-filter:blur(26px)}
+.chat-window.open{display:flex;animation:chatIn .2s ease}@keyframes chatIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.chat-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid rgba(255,255,255,.09)}
+.chat-person{display:flex;align-items:center;gap:11px}.chat-avatar{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#22d3ee);font-weight:900}.chat-head small{display:block;color:#8f97aa;font-size:10px;margin-top:2px}.chat-close{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.09);color:#aeb6c7;background:rgba(255,255,255,.04);cursor:pointer}
+.chat-msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}.chat-bubble{max-width:86%;padding:11px 13px;border-radius:16px;font-size:13px;line-height:1.55;white-space:pre-wrap}.chat-bubble.bot{align-self:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#e8eaf2;border-bottom-left-radius:5px}.chat-bubble.user{align-self:flex-end;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-bottom-right-radius:5px}
+.chat-suggestions{display:flex;gap:7px;overflow:auto;padding:0 14px 10px}.chat-chip{white-space:nowrap;padding:7px 10px;border-radius:999px;border:1px solid rgba(167,139,250,.22);background:rgba(139,92,246,.08);color:#cfc5f5;font-size:10px;cursor:pointer}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.09)}.chat-input input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);color:#fff;border-radius:13px;padding:11px 12px;outline:none;font-size:13px}.chat-send{width:42px;border:0;border-radius:13px;background:linear-gradient(135deg,#8b5cf6,#4f46e5);color:#fff;cursor:pointer}
+@media(max-width:600px){.chat-launch{right:15px;bottom:15px}.chat-window{right:14px;bottom:82px;width:calc(100vw - 28px)}}
+
+
+/* Cute roaming robot chatbot */
+.chat-launch.robot-float{
+  position:fixed;right:34px;bottom:28px;z-index:180;
+  width:92px;height:105px;padding:0;border:0;background:transparent;
+  box-shadow:none;cursor:pointer;filter:drop-shadow(0 14px 20px rgba(0,0,0,.35));
+  animation:robotRoam 14s ease-in-out infinite, robotBob 2.7s ease-in-out infinite;
+  transform-origin:center bottom;
+}
+.chat-launch.robot-float:hover{transform:scale(1.08);filter:drop-shadow(0 18px 28px rgba(139,92,246,.48))}
+.cute-robot{position:absolute;left:10px;bottom:0;width:72px;height:94px;display:block}
+.robot-antenna{position:absolute;left:34px;top:0;width:4px;height:15px;border-radius:4px;background:#a78bfa}
+.robot-antenna:after{content:"";position:absolute;left:-4px;top:-6px;width:12px;height:12px;border-radius:50%;background:#22d3ee;box-shadow:0 0 14px #22d3ee;animation:antennaPulse 1.4s infinite}
+.robot-head{position:absolute;left:8px;top:12px;width:56px;height:43px;border-radius:17px;background:linear-gradient(145deg,#f4f7ff,#cdd6ef);border:2px solid rgba(255,255,255,.8);box-shadow:inset 0 -5px 10px rgba(86,96,140,.16),inset 0 2px 4px #fff}
+.robot-ear{position:absolute;top:13px;width:8px;height:17px;border-radius:5px;background:#8b5cf6}.robot-ear.left{left:-7px}.robot-ear.right{right:-7px}
+.robot-eye{position:absolute;top:15px;width:9px;height:9px;border-radius:50%;background:#312e81;box-shadow:0 0 7px rgba(34,211,238,.9);animation:blink 4s infinite}.robot-eye.left{left:14px}.robot-eye.right{right:14px}
+.robot-mouth{position:absolute;left:22px;bottom:9px;width:13px;height:5px;border-bottom:2px solid #6366f1;border-radius:0 0 12px 12px}
+.robot-body{position:absolute;left:13px;top:52px;width:46px;height:34px;border-radius:14px 14px 11px 11px;background:linear-gradient(145deg,#8b5cf6,#4f46e5);border:2px solid rgba(255,255,255,.32);box-shadow:inset 0 2px 5px rgba(255,255,255,.35)}
+.robot-chest{position:absolute;left:12px;top:8px;width:19px;height:19px;border-radius:7px;background:rgba(255,255,255,.16);display:grid;place-items:center;color:white;font-size:7px;font-weight:900}
+.robot-arm{position:absolute;top:57px;width:10px;height:27px;border-radius:8px;background:#cbd5e1;border:2px solid #fff;transform-origin:top center}
+.robot-arm.left{left:4px;animation:waveArm 2.8s ease-in-out infinite}.robot-arm.right{right:4px;animation:waveArm2 3.2s ease-in-out infinite}
+.robot-leg{position:absolute;top:83px;width:11px;height:10px;border-radius:0 0 7px 7px;background:#94a3b8}.robot-leg.left{left:22px}.robot-leg.right{right:22px}
+.robot-bubble{position:absolute;right:-5px;top:-9px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#22d3ee,#8b5cf6);color:#fff;font-size:12px;border:2px solid rgba(255,255,255,.7);animation:bubblePop 2s ease-in-out infinite;z-index:3}
+@keyframes robotBob{0%,100%{margin-bottom:0}50%{margin-bottom:9px}}
+@keyframes robotRoam{0%,100%{right:34px}22%{right:16%;}48%{right:31%;}72%{right:55%;}90%{right:78%;}}
+@keyframes waveArm{0%,100%{transform:rotate(0)}50%{transform:rotate(18deg)}}
+@keyframes waveArm2{0%,100%{transform:rotate(0)}50%{transform:rotate(-22deg)}}
+@keyframes antennaPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+@keyframes blink{0%,45%,48%,100%{transform:scaleY(1)}46%,47%{transform:scaleY(.12)}}
+@keyframes bubblePop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media(max-width:600px){
+ .chat-launch.robot-float{right:14px;bottom:17px;animation:robotBob 2.7s ease-in-out infinite}
+ .robot-bubble{right:-2px}
+}
+@media(prefers-reduced-motion:reduce){
+ .chat-launch.robot-float,.robot-arm,.robot-eye,.robot-antenna:after,.robot-bubble{animation:none}
+}
+
+</style>
+</head>
+<body>
+<div class="bg-decor"></div>
+
+<!-- ============================= NAVBAR ============================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-logo" id="brandLogoInitials">MG</div>
+      <div class="brand-text">
+        <div class="brand-name" id="brandName">Mayur Gohil</div>
+        <div class="brand-tagline" id="brandTagline">Tech Creator | Hardware Explorer</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="active" data-nav="home">Home</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#skills" data-nav="skills">Skills</a>
+      <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#services" data-nav="services">Services</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-primary btn-sm" id="openAdminBtn" aria-haspopup="dialog"><i class="fa-solid fa-gear"></i> Admin Panel</button>
+      <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle light and dark theme"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+      <button class="icon-btn hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================= HERO ============================= -->
+<header class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="badge-pill"><i class="fa-solid fa-graduation-cap"></i> <span id="heroBadge">IT Undergraduate</span></span>
+      <h1 class="hero-title"><span id="heroLine1">Mayur</span><span class="line2" id="heroLine2">Gohil</span></h1>
+      <div class="hero-subtitle" id="heroSubtitle">B.Tech Information Technology</div>
+      <div class="hero-tagline" id="heroTagline">Tech Creator | Hardware Explorer | Troubleshooter</div>
+      <p class="hero-desc" id="heroDesc">Passionate about exploring technology, smartphones, laptops &amp; PC hardware. I create technical content and help people with solutions.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#" id="downloadCvBtn"><i class="fa-solid fa-download"></i> Download CV</a>
+        <a class="btn btn-outline" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+      </div>
+      <div class="social-row" id="socialRow"></div>
+    </div>
+
+    <div class="avatar-stage">
+      <div class="avatar-platform"></div>
+      <div class="ring-dash"></div>
+      <div class="ring-outer"></div>
+      <div class="avatar-circle">
+        <span class="avatar-initials" id="heroAvatarInitials">MG</span>
+        <img class="avatar-img" id="heroAvatarImg" alt="Profile photo" hidden />
+      </div>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-row">
+        <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div><div class="info-label">Education</div><div class="info-value" id="infoDegree">B.Tech IT</div><div class="info-sub" id="infoField">Information Technology</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><i class="fa-solid fa-code"></i></div>
+        <div><div class="info-label">Focus</div><div class="info-value" id="infoFocus">Tech Content &amp; Troubleshooting</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><i class="fa-solid fa-circle-play"></i></div>
+        <div><div class="info-label">Channel</div><div class="info-value" id="infoChannel">MKG Tech</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div><div class="info-label">Location</div><div class="info-value" id="infoLocation">India 🇮🇳</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================= SERVICES STRIP ============================= -->
+<section class="container services-strip" id="services">
+  <div class="card">
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ============================= ABOUT / SKILLS / PROJECTS ============================= -->
+<section class="section">
+  <div class="container content-grid">
+
+    <div class="card panel" id="about">
+      <div class="panel-header"><span class="panel-title">About Me</span></div>
+      <div class="about-avatar">
+        <span class="avatar-initials" id="aboutAvatarInitials">MG</span>
+        <img class="avatar-img" id="aboutAvatarImg" alt="Profile photo" hidden />
+      </div>
+      <p class="about-text" id="aboutText"></p>
+      <p class="about-extra" id="aboutExtra"></p>
+      <div class="chip-row" id="experienceChips"></div>
+      <button class="btn btn-outline btn-sm" id="readMoreBtn">Read More</button>
+    </div>
+
+    <div class="card panel" id="skills">
+      <div class="panel-header">
+        <span class="panel-title">Skills</span>
+        <button class="link-more" id="skillsViewAll">View All <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div id="skillsList"></div>
+      <div class="brain-stage"><div class="brain-platform"></div><i class="fa-solid fa-brain brain-icon"></i></div>
+    </div>
+
+    <div class="card panel" id="projects">
+      <div class="panel-header">
+        <span class="panel-title">Latest Projects</span>
+        <button class="link-more" id="projectsViewAll">View All <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div id="projectsList"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================= ACHIEVEMENTS ============================= -->
+<section class="container">
+  <div class="achievements-strip" id="achievementsStrip"></div>
+</section>
+
+<!-- ============================= CUSTOM SECTIONS ============================= -->
+<section class="section" id="customSectionsWrap" style="display:none;">
+  <div class="container">
+    <div class="custom-sections" id="customSectionsContainer"></div>
+  </div>
+</section>
+
+<!-- ============================= STATS BAR ============================= -->
+<section class="stats-bar">
+  <div class="container stats-grid" id="statsGrid"></div>
+</section>
+
+<!-- ============================= CONTACT ============================= -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="card panel">
+      <div class="panel-header"><span class="panel-title">Let's Connect</span></div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info-row"><div class="info-icon"><i class="fa-solid fa-envelope"></i></div><div><div class="info-label">Email</div><div class="info-value" id="contactEmail">mayur.gohil@example.com</div></div></div>
+          <div class="contact-info-row"><div class="info-icon"><i class="fa-solid fa-location-dot"></i></div><div><div class="info-label">Based in</div><div class="info-value" id="contactLocation">India</div></div></div>
+          <div class="social-row" id="socialRowContact" style="margin-top:18px;"></div>
+        </div>
+        <form id="contactForm">
+          <div class="form-group"><label class="form-label" for="cfName">Name</label><input class="field" id="cfName" type="text" placeholder="Your name" required /></div>
+          <div class="form-group"><label class="form-label" for="cfEmail">Email</label><input class="field" id="cfEmail" type="email" placeholder="you@example.com" required /></div>
+          <div class="form-group"><label class="form-label" for="cfMsg">Message</label><textarea class="field" id="cfMsg" placeholder="What's on your mind?" required></textarea></div>
+          <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="site-footer">
+  <span>© <span id="footerYear"></span> <span id="footerName">Mayur Gohil</span>. All rights reserved.</span>
+</footer>
+
+<!-- ============================= ADMIN PANEL ============================= -->
+<div class="admin-overlay" id="adminOverlay" role="dialog" aria-modal="true" aria-label="Admin Panel">
+  <div class="admin-backdrop" id="adminBackdrop"></div>
+  <div class="admin-drawer">
+    <div class="admin-header">
+      <h2>Admin Panel</h2>
+      <button class="icon-btn" id="adminCloseBtn" aria-label="Close admin panel"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="admin-body">
+      <aside class="admin-sidebar" id="adminSidebar">
+        <button class="admin-nav-item" data-view="dashboard"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></button>
+        <button class="admin-nav-item" data-view="about"><i class="fa-solid fa-circle-info"></i><span>About</span></button>
+        <button class="admin-nav-item" data-view="skills"><i class="fa-solid fa-chart-simple"></i><span>Skills</span></button>
+        <button class="admin-nav-item" data-view="projects"><i class="fa-solid fa-folder-open"></i><span>Projects</span></button>
+        <button class="admin-nav-item" data-view="services"><i class="fa-solid fa-toolbox"></i><span>Services</span></button>
+        <button class="admin-nav-item" data-view="experience"><i class="fa-solid fa-briefcase"></i><span>Experience</span></button>
+        <button class="admin-nav-item" data-view="education"><i class="fa-solid fa-graduation-cap"></i><span>Education</span></button>
+        <button class="admin-nav-item" data-view="achievements"><i class="fa-solid fa-trophy"></i><span>Achievements</span></button>
+        <button class="admin-nav-item" data-view="contact"><i class="fa-solid fa-envelope"></i><span>Contact</span></button>
+        <button class="admin-nav-item" data-view="settings"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
+        <button class="admin-nav-item" id="adminLogoutBtn"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button>
+        <button class="btn btn-outline btn-sm admin-preview-btn" id="previewSiteBtn"><i class="fa-solid fa-eye"></i> <span>Preview Website</span></button>
+      </aside>
+
+      <main class="admin-main" id="adminMain">
+
+        <!-- Dashboard -->
+        <div class="admin-view" data-view="dashboard">
+          <div class="dash-welcome"><h3>Dashboard</h3><p id="dashWelcome">Welcome back, Mayur!</p></div>
+          <div class="dash-stats-grid" id="dashStatsGrid"></div>
+          <div class="section-label">Quick Actions</div>
+          <div class="quick-actions">
+            <button class="qa-btn qa-violet" id="qaAddSection"><i class="fa-solid fa-plus"></i> Add New Section</button>
+            <button class="qa-btn qa-indigo" data-goto="about"><i class="fa-solid fa-pen"></i> Edit About Me</button>
+            <button class="qa-btn qa-teal" data-goto="skills"><i class="fa-solid fa-chart-simple"></i> Manage Skills</button>
+            <button class="qa-btn qa-amber" data-goto="projects"><i class="fa-solid fa-diagram-project"></i> Manage Projects</button>
+          </div>
+          <div class="section-label">Custom Sections</div>
+          <div class="custom-sections-manage" id="customSectionsManage"></div>
+        </div>
+
+        <!-- About -->
+        <div class="admin-view" data-view="about">
+          <div class="dash-welcome"><h3>Edit About Me</h3><p>Update your information</p></div>
+          <div class="edit-grid">
+            <div>
+              <label class="form-label">About Me Text</label>
+              <textarea class="field" id="editAboutText" style="min-height:120px;margin-bottom:14px;"></textarea>
+              <label class="form-label">Extended Bio (shown on "Read More")</label>
+              <textarea class="field" id="editAboutExtra" style="min-height:90px;"></textarea>
+            </div>
+            <div>
+              <label class="form-label">Profile Image / Avatar</label>
+              <div class="avatar-edit-preview" id="avatarEditPreview">
+                <span class="avatar-initials" id="avatarEditInitials">MG</span>
+                <img class="avatar-img" id="avatarEditImg" alt="Profile photo" hidden />
+              </div>
+              <input type="file" id="avatarFileInput" accept="image/*" hidden />
+              <button class="btn btn-outline btn-sm" id="changeAvatarBtn" style="margin-bottom:8px;"><i class="fa-solid fa-camera-retro"></i> Change Avatar</button><br/>
+              <button class="btn btn-outline btn-sm" id="resetAvatarBtn"><i class="fa-solid fa-rotate-left"></i> Use Initials Instead</button>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="saveAboutBtn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Skills -->
+        <div class="admin-view" data-view="skills">
+          <div class="dash-welcome"><h3>Manage Skills</h3><p>These power the skill bars on your site</p></div>
+          <div class="manage-list" id="skillsManageList"></div>
+          <div class="add-row-card">
+            <div class="form-grid-2">
+              <input class="field" id="newSkillName" type="text" placeholder="Skill name" />
+              <input class="field" id="newSkillPct" type="number" min="0" max="100" placeholder="%" />
+            </div>
+            <button class="btn btn-outline btn-sm" id="addSkillBtn" style="margin-top:10px;"><i class="fa-solid fa-plus"></i> Add Skill</button>
+          </div>
+          <button class="btn btn-primary" id="saveSkillsBtn" style="margin-top:16px;"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Projects -->
+        <div class="admin-view" data-view="projects">
+          <div class="dash-welcome"><h3>Manage Projects</h3><p>Shown in your Latest Projects section</p></div>
+          <div class="manage-list" id="projectsManageList"></div>
+          <div class="add-row-card">
+            <input class="field" id="newProjectTitle" type="text" placeholder="Project title" style="margin-bottom:10px;" />
+            <input class="field" id="newProjectDesc" type="text" placeholder="Short description" style="margin-bottom:10px;" />
+            <select class="field" id="newProjectIcon"></select><input class="field" id="newProjectUrl" type="url" placeholder="Project URL (optional)" style="margin-top:10px;" />
+            <button class="btn btn-outline btn-sm" id="addProjectBtn" style="margin-top:10px;"><i class="fa-solid fa-plus"></i> Add Project</button>
+          </div>
+          <button class="btn btn-primary" id="saveProjectsBtn" style="margin-top:16px;"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Services -->
+        <div class="admin-view" data-view="services">
+          <div class="dash-welcome"><h3>Manage Services</h3><p>The strip shown under your hero section</p></div>
+          <div class="manage-list" id="servicesManageList"></div>
+          <div class="add-row-card">
+            <input class="field" id="newServiceTitle" type="text" placeholder="Service title" style="margin-bottom:10px;" />
+            <input class="field" id="newServiceDesc" type="text" placeholder="Short description" style="margin-bottom:10px;" />
+            <select class="field" id="newServiceIcon"></select>
+            <button class="btn btn-outline btn-sm" id="addServiceBtn" style="margin-top:10px;"><i class="fa-solid fa-plus"></i> Add Service</button>
+          </div>
+          <button class="btn btn-primary" id="saveServicesBtn" style="margin-top:16px;"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Experience -->
+        <div class="admin-view" data-view="experience">
+          <div class="dash-welcome"><h3>Manage Experience</h3><p>Shown as chips on your About card</p></div>
+          <div class="manage-list" id="experienceManageList"></div>
+          <div class="add-row-card">
+            <div class="form-grid-2" style="margin-bottom:10px;">
+              <input class="field" id="newExpRole" type="text" placeholder="Role" />
+              <input class="field" id="newExpOrg" type="text" placeholder="Organization" />
+            </div>
+            <input class="field" id="newExpPeriod" type="text" placeholder="Period (e.g. 2022 – Present)" />
+            <button class="btn btn-outline btn-sm" id="addExpBtn" style="margin-top:10px;"><i class="fa-solid fa-plus"></i> Add Experience</button>
+          </div>
+          <button class="btn btn-primary" id="saveExpBtn" style="margin-top:16px;"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Education -->
+        <div class="admin-view" data-view="education">
+          <div class="dash-welcome"><h3>Education</h3><p>Shown in your hero info card</p></div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Degree</label><input class="field" id="editDegree" type="text" /></div>
+            <div class="form-group"><label class="form-label">Field of Study</label><input class="field" id="editField" type="text" /></div>
+          </div>
+          <button class="btn btn-primary" id="saveEducationBtn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Achievements -->
+        <div class="admin-view" data-view="achievements">
+          <div class="dash-welcome"><h3>Manage Achievements</h3><p>Shown as a badge strip on your site</p></div>
+          <div class="manage-list" id="achievementsManageList"></div>
+          <div class="add-row-card">
+            <input class="field" id="newAchievement" type="text" placeholder="e.g. B.Tech Information Technology" />
+            <button class="btn btn-outline btn-sm" id="addAchievementBtn" style="margin-top:10px;"><i class="fa-solid fa-plus"></i> Add Achievement</button>
+          </div>
+          <button class="btn btn-primary" id="saveAchievementsBtn" style="margin-top:16px;"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Contact -->
+        <div class="admin-view" data-view="contact">
+          <div class="dash-welcome"><h3>Contact &amp; Socials</h3><p>Shown on your Contact section and social icons</p></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="field" id="editEmail" type="email" /></div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label"><i class="fa-brands fa-instagram"></i> Instagram URL</label><input class="field" id="editInstagram" type="text" /></div>
+            <div class="form-group"><label class="form-label"><i class="fa-brands fa-youtube"></i> YouTube URL</label><input class="field" id="editYoutube" type="text" /></div>
+            <div class="form-group"><label class="form-label"><i class="fa-brands fa-github"></i> GitHub URL</label><input class="field" id="editGithub" type="text" /></div>
+            <div class="form-group"><label class="form-label"><i class="fa-brands fa-linkedin-in"></i> LinkedIn URL</label><input class="field" id="editLinkedin" type="text" /></div>
+          </div>
+          <button class="btn btn-primary" id="saveContactBtn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+
+        <!-- Settings -->
+        <div class="admin-view" data-view="settings">
+          <div class="dash-welcome"><h3>Settings</h3><p>General site information</p></div>
+          <div class="form-group"><label class="form-label">Full Name</label><input class="field" id="editName" type="text" /></div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Header Tagline</label><input class="field" id="editTagline" type="text" /></div>
+            <div class="form-group"><label class="form-label">Hero Badge Text</label><input class="field" id="editBadge" type="text" /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Hero Tagline (three-part)</label><input class="field" id="editHeroTagline" type="text" /></div>
+          <div class="form-group"><label class="form-label">Hero Description</label><textarea class="field" id="editHeroDesc"></textarea></div>
+          <div class="form-group"><label class="form-label">Location</label><input class="field" id="editLocation" type="text" /></div>
+          <button class="btn btn-primary" id="saveSettingsBtn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button><p class="empty-note" style="margin-top:12px;"><i class="fa-solid fa-shield-halved"></i> Admin access is protected for this browser session. Production deployments should use server-side authentication.</p>
+          <div class="settings-danger">
+            <p><i class="fa-solid fa-triangle-exclamation"></i> This resets every section back to the original demo content. This can't be undone.</p>
+            <button class="btn btn-danger btn-sm" id="resetDataBtn"><i class="fa-solid fa-trash"></i> Reset All Data to Defaults</button>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================= ADMIN LOGIN ============================= -->
+<div class="admin-login" id="adminLogin" aria-hidden="true">
+  <div class="admin-login-card glass-card">
+    <div class="login-logo"><i class="fa-solid fa-shield-halved"></i></div>
+    <div class="eyebrow">MKG TECH • PRIVATE</div>
+    <h2>Admin Access</h2>
+    <p>Enter your dashboard password to continue.</p>
+    <form id="adminLoginForm">
+      <label class="form-label" for="adminEmail">Admin Email</label>
+      <input class="field" id="adminEmail" type="email" autocomplete="username" placeholder="admin@example.com" required style="margin-bottom:12px;" />
+      <label class="form-label" for="adminPassword">Password</label>
+      <div class="password-wrap">
+        <input class="field" id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter password" required />
+        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+      </div>
+      <div class="login-error" id="adminLoginError"></div>
+      <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-unlock-keyhole"></i> Unlock Admin</button>
+    </form>
+    <button class="btn btn-outline btn-block" id="adminLoginCancel" type="button" style="margin-top:10px;">Cancel</button>
+  </div>
+</div>
+
+
+<button class="chat-launch robot-float" id="chatLaunch" aria-label="Ask about Mayur" title="Ask about Mayur">
+  <span class="robot-bubble"><i class="fa-solid fa-comment-dots"></i></span>
+  <span class="cute-robot" aria-hidden="true">
+    <span class="robot-antenna"></span>
+    <span class="robot-head">
+      <span class="robot-ear left"></span><span class="robot-ear right"></span>
+      <span class="robot-eye left"></span><span class="robot-eye right"></span>
+      <span class="robot-mouth"></span>
+    </span>
+    <span class="robot-body"><span class="robot-chest">MG</span></span>
+    <span class="robot-arm left"></span><span class="robot-arm right"></span>
+    <span class="robot-leg left"></span><span class="robot-leg right"></span>
+  </span>
+</button>
+<section class="chat-window" id="chatWindow" aria-label="Mayur information chatbot">
+<header class="chat-head"><div class="chat-person"><div class="chat-avatar">MG</div><div><b>Ask about Mayur</b><small>Portfolio information assistant</small></div></div><button class="chat-close" id="chatClose">×</button></header>
+<div class="chat-msgs" id="chatMsgs"></div>
+<div class="chat-suggestions"><button class="chat-chip" data-q="Who is Mayur?">Who is Mayur?</button><button class="chat-chip" data-q="What did he study?">Education</button><button class="chat-chip" data-q="What is MKG Tech?">MKG Tech</button><button class="chat-chip" data-q="What are his skills?">Skills</button></div>
+<form class="chat-input" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Ask something about Mayur…"><button class="chat-send"><i class="fa-solid fa-paper-plane"></i></button></form>
+</section>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ============================= DEFAULT DATA ============================= */
+const DEFAULT_DATA = {
+  name:"Mayur Gohil",
+  tagline:"Tech Creator | Hardware Explorer",
+  badge:"IT Undergraduate",
+  heroTagline:"Tech Creator | Hardware Explorer | Troubleshooter",
+  heroDesc:"Passionate about exploring technology, smartphones, laptops & PC hardware. I create technical content and help people with solutions.",
+  education:{degree:"B.Tech IT", field:"Information Technology"},
+  focus:"Tech Content & Troubleshooting",
+  channel:"MKG Tech",
+  location:"India",
+  email:"mayur.gohil@example.com",
+  social:{instagram:"", youtube:"", github:"", linkedin:""},
+  about:"I am Mayur Gohil, a B.Tech IT student with a deep passion for technology. I love exploring smartphones, laptops, and PC hardware. I also create content on MKG Tech where I share technical information, reviews, and solutions.",
+  aboutExtra:"When I'm not comparing spec sheets or taking a device apart to see what makes it tick, I'm scripting my next MKG Tech video or replying to a comment about a problem I've probably run into myself. My goal is simple: turn confusing tech jargon into something anyone can actually use.",
+  avatarImage:null,
+  services:[
+    {icon:"mobile-screen-button", title:"Smartphone Research", desc:"Latest specs, leaks, comparison & more"},
+    {icon:"laptop", title:"Laptop & PC Hardware", desc:"Reviews, specs, upgrades & exploration"},
+    {icon:"screwdriver-wrench", title:"Troubleshooting Expert", desc:"Fixing issues & finding solutions"},
+    {icon:"camera", title:"Tech Content Creator", desc:"YouTube videos, posts & reels"},
+    {icon:"chart-line", title:"Tech Informer", desc:"Technical info in a simple way"}
+  ],
+  skills:[
+    {name:"Hardware Knowledge", pct:95},
+    {name:"Smartphone Research", pct:92},
+    {name:"Troubleshooting", pct:90},
+    {name:"Content Creation", pct:88},
+    {name:"Technical Writing", pct:85}
+  ],
+  projects:[
+    {icon:"mobile-screen-button", title:"Smartphone Exploration Series", desc:"In-depth research and specs analysis"},
+    {icon:"laptop", title:"Laptop & PC Builds", desc:"Hands-on reviews and upgrade guides"}
+  ],
+  experience:[
+    {role:"Founder & Creator", org:"MKG Tech", period:"2022 – Present"},
+    {role:"Freelance Troubleshooter", org:"Self-employed", period:"2021 – Present"}
+  ],
+  achievements:[
+    "B.Tech Information Technology",
+    "MKG Tech creator",
+    "Technology & hardware enthusiast"
+  ],
+  customSections:[],
+  dashboard:{messages:23, views:1247}
+};
+
+const ICON_OPTIONS = [
+  ["mobile-screen-button","Smartphone"],
+  ["laptop","Laptop"],
+  ["screwdriver-wrench","Wrench"],
+  ["camera","Camera"],
+  ["chart-line","Chart"],
+  ["code","Code"],
+  ["microchip","Chip"],
+  ["wifi","Wifi"],
+  ["gamepad","Gamepad"],
+  ["battery-full","Battery"]
+];
+
+let state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+const STORAGE_KEY = "portfolio-state-v1";
+
+/* ============================= UTIL ============================= */
+function esc(str){
+  return String(str==null?"":str).replace(/[&<>"']/g, function(s){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s];
+  });
+}
+function iconClass(key){
+  const found = ICON_OPTIONS.find(o=>o[0]===key);
+  return "fa-solid fa-" + (found ? found[0] : "star");
+}
+function formatCount(n){
+  n = Number(n)||0;
+  if(n>=1000000) return (n/1000000).toFixed(1).replace(/\.0$/,"") + "M";
+  if(n>=1000) return (n/1000).toFixed(1).replace(/\.0$/,"") + "K";
+  return String(n);
+}
+function initialsOf(name){
+  const parts = String(name||"").trim().split(/\s+/).filter(Boolean);
+  if(parts.length===0) return "MG";
+  if(parts.length===1) return parts[0].slice(0,2).toUpperCase();
+  return (parts[0][0]+parts[parts.length-1][0]).toUpperCase();
+}
+function toast(msg){
+  const c = document.getElementById("toastContainer");
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + esc(msg);
+  c.appendChild(t);
+  setTimeout(()=>{ t.style.opacity="0"; t.style.transition="opacity .3s ease"; setTimeout(()=>t.remove(),300); }, 2400);
+}
+
+/* ============================= STORAGE ============================= */
+async function loadState(){
+  try{
+    if(window.storage){
+      const r = await window.storage.get(STORAGE_KEY, false);
+      if(r && r.value){
+        const saved = JSON.parse(r.value);
+        state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_DATA)), saved);
+      }
+    } else {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_DATA)), JSON.parse(raw));
+    }
+  }catch(e){ /* nothing saved yet - use defaults */ }
+}
+async function saveState(){
+  try{
+    if(window.storage){
+      await window.storage.set(STORAGE_KEY, JSON.stringify(state), false);
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+  }catch(e){ console.warn("Could not persist data:", e); }
+}
+
+/* ============================= RENDER: PUBLIC SITE ============================= */
+function renderBrand(){
+  document.getElementById("brandLogoInitials").textContent = initialsOf(state.name);
+  document.getElementById("brandName").textContent = state.name;
+  document.getElementById("brandTagline").textContent = state.tagline;
+  document.getElementById("footerName").textContent = state.name;
+}
+function renderHero(){
+  const parts = state.name.trim().split(/\s+/);
+  document.getElementById("heroLine1").textContent = parts[0] || state.name;
+  document.getElementById("heroLine2").textContent = parts.slice(1).join(" ") || "";
+  document.getElementById("heroBadge").textContent = state.badge;
+  document.getElementById("heroSubtitle").textContent = state.education.field ? ("B.Tech " + state.education.degree.replace(/^B\.?Tech\.?\s*/i,"")) : state.education.degree;
+  document.getElementById("heroSubtitle").textContent = "B.Tech " + (state.education.field || state.education.degree);
+  document.getElementById("heroTagline").textContent = state.heroTagline;
+  document.getElementById("heroDesc").textContent = state.heroDesc;
+  document.getElementById("infoDegree").textContent = state.education.degree;
+  document.getElementById("infoField").textContent = state.education.field;
+  document.getElementById("infoFocus").textContent = state.focus;
+  document.getElementById("infoChannel").textContent = state.channel;
+  document.getElementById("infoLocation").textContent = state.location + " 🇮🇳";
+  document.getElementById("contactLocation").textContent = state.location;
+}
+function renderAvatarInto(circleInitialsId, circleImgId){
+  const initEl = document.getElementById(circleInitialsId);
+  const imgEl = document.getElementById(circleImgId);
+  if(state.avatarImage){
+    imgEl.src = state.avatarImage; imgEl.hidden = false; initEl.hidden = true;
+  }else{
+    initEl.textContent = initialsOf(state.name); initEl.hidden = false; imgEl.hidden = true;
+  }
+}
+function renderAvatars(){
+  renderAvatarInto("heroAvatarInitials","heroAvatarImg");
+  renderAvatarInto("aboutAvatarInitials","aboutAvatarImg");
+}
+function renderSocials(){
+  const links = [
+    ["instagram","fa-brands fa-instagram"],
+    ["youtube","fa-brands fa-youtube"],
+    ["github","fa-brands fa-github"],
+    ["linkedin","fa-brands fa-linkedin-in"]
+  ];
+  const html = links.map(([key,cls])=>{
+    const url = state.social[key] && state.social[key].trim() ? state.social[key].trim() : "#";
+    return '<a class="social-icon" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="'+key+'"><i class="'+cls+'"></i></a>';
+  }).join("");
+  document.getElementById("socialRow").innerHTML = html;
+  document.getElementById("socialRowContact").innerHTML = html;
+}
+function renderServices(){
+  document.getElementById("servicesGrid").innerHTML = state.services.map(s=>(
+    '<div class="service-item"><div class="service-icon"><i class="'+iconClass(s.icon)+'"></i></div>' +
+    '<div><div class="service-title">'+esc(s.title)+'</div><div class="service-desc">'+esc(s.desc)+'</div></div></div>'
+  )).join("");
+}
+function renderAbout(){
+  document.getElementById("aboutText").textContent = state.about;
+  document.getElementById("aboutExtra").textContent = state.aboutExtra;
+  document.getElementById("experienceChips").innerHTML = state.experience.map(e=>
+    '<span class="chip"><i class="fa-solid fa-briefcase"></i> '+esc(e.role)+' @ '+esc(e.org)+' · '+esc(e.period)+'</span>'
+  ).join("");
+}
+function renderSkills(){
+  document.getElementById("skillsList").innerHTML = state.skills.map((s,i)=>(
+    '<div class="skill-row"><div class="skill-top"><span class="skill-name">'+esc(s.name)+'</span><span class="skill-pct">'+s.pct+'%</span></div>'+
+    '<div class="skill-track"><div class="skill-fill" data-target="'+s.pct+'" id="skillFill'+i+'"></div></div></div>'
+  )).join("");
+  requestAnimationFrame(()=>{
+    document.querySelectorAll(".skill-fill").forEach(el=>{ el.style.width = el.getAttribute("data-target")+"%"; });
+  });
+}
+function renderProjects(){
+  document.getElementById("projectsList").innerHTML = state.projects.map(p=>(
+    '<div class="project-item"><div class="project-thumb"><i class="'+iconClass(p.icon)+'"></i></div>'+
+    '<div><div class="project-title">'+esc(p.title)+'</div><div class="project-desc">'+esc(p.desc)+'</div>'+
+    '<button class="btn btn-outline btn-sm" onclick="window.__portfolio.viewProject()">View Project</button></div></div>'
+  )).join("");
+}
+function renderAchievements(){
+  document.getElementById("achievementsStrip").innerHTML = state.achievements.map(a=>
+    '<span class="achv-chip"><i class="fa-solid fa-trophy"></i> '+esc(a)+'</span>'
+  ).join("");
+}
+function renderCustomSections(){
+  const wrap = document.getElementById("customSectionsWrap");
+  const list = state.customSections || [];
+  wrap.style.display = list.length ? "block" : "none";
+  document.getElementById("customSectionsContainer").innerHTML = list.map(cs=>
+    '<div class="card custom-card"><h3>'+esc(cs.title)+'</h3><p>'+esc(cs.body)+'</p></div>'
+  ).join("");
+}
+function renderStats(){
+  const stats = [
+    {icon:"fa-book-open", color:"#38bdf8", value:"2+", label:"Years of Learning"},
+    {icon:"fa-circle-play", color:"#fb7185", value:"MKG", label:"Tech Creator"},
+    {icon:"fa-chart-line", color:"#34d399", value:"IT", label:"Engineering Background"},
+    {icon:"fa-infinity", color:"#8b5cf6", value:"∞", label:"Curiosity"},
+    {icon:"fa-rocket", color:"#f59e0b", value:"100%", label:"Dedication"}
+  ];
+  document.getElementById("statsGrid").innerHTML = stats.map(s=>(
+    '<div class="stat-item"><div class="stat-icon" style="background:'+s.color+'"><i class="fa-solid '+s.icon+'"></i></div>'+
+    '<div><div class="stat-value">'+s.value+'</div><div class="stat-label">'+s.label+'</div></div></div>'
+  )).join("");
+}
+function renderContactSection(){
+  document.getElementById("contactEmail").textContent = state.email;
+}
+function renderFooter(){
+  document.getElementById("footerYear").textContent = new Date().getFullYear();
+}
+function renderPublicSite(){
+  renderBrand(); renderHero(); renderAvatars(); renderSocials(); renderServices();
+  renderAbout(); renderSkills(); renderProjects(); renderAchievements();
+  renderCustomSections(); renderStats(); renderContactSection(); renderFooter();
+}
+
+/* ============================= RENDER: ADMIN ============================= */
+function currentView(){
+  const active = document.querySelector(".admin-nav-item.active");
+  return active ? active.getAttribute("data-view") : "dashboard";
+}
+function switchAdminView(view){
+  document.querySelectorAll(".admin-nav-item[data-view]").forEach(b=>b.classList.toggle("active", b.getAttribute("data-view")===view));
+  document.querySelectorAll(".admin-view").forEach(v=>v.classList.toggle("active", v.getAttribute("data-view")===view));
+  const renderers = {
+    dashboard:renderDashboard, about:renderAdminAbout, skills:renderAdminSkills,
+    projects:renderAdminProjects, services:renderAdminServices, experience:renderAdminExperience,
+    education:renderAdminEducation, achievements:renderAdminAchievements,
+    contact:renderAdminContact, settings:renderAdminSettings
+  };
+  if(renderers[view]) renderers[view]();
+}
+function renderDashboard(){
+  document.getElementById("dashWelcome").textContent = "Welcome back, " + state.name.split(" ")[0] + "!";
+  const totalSections = 7 + (state.customSections||[]).length;
+  const stats = [
+    ["Total Sections", totalSections], ["Total Skills", state.skills.length], ["Total Projects", state.projects.length],
+    ["Services", state.services.length], ["Messages", state.dashboard.messages], ["Profile Views", formatCount(state.dashboard.views)]
+  ];
+  document.getElementById("dashStatsGrid").innerHTML = stats.map(([l,n])=>
+    '<div class="dash-stat"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>'
+  ).join("");
+  const csList = state.customSections||[];
+  document.getElementById("customSectionsManage").innerHTML = csList.length ? csList.map((cs,i)=>
+    '<div class="cs-row"><span>'+esc(cs.title)+'</span><button data-idx="'+i+'" class="del-custom-section" aria-label="Delete section"><i class="fa-solid fa-trash"></i></button></div>'
+  ).join("") : '<p class="empty-note">No custom sections yet — try "Add New Section" above.</p>';
+  document.querySelectorAll(".del-custom-section").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      state.customSections.splice(Number(btn.getAttribute("data-idx")),1);
+      renderCustomSections(); renderDashboard(); saveState();
+    });
+  });
+}
+function renderAdminAbout(){
+  document.getElementById("editAboutText").value = state.about;
+  document.getElementById("editAboutExtra").value = state.aboutExtra;
+  renderAvatarInto("avatarEditInitials","avatarEditImg");
+}
+function manageListRow(index, listName, fieldsHtml){
+  return '<div class="manage-row" data-idx="'+index+'" data-list="'+listName+'"><div class="fields row2">'+fieldsHtml+'</div><button class="icon-del" aria-label="Delete"><i class="fa-solid fa-trash"></i></button></div>';
+}
+function renderAdminSkills(){
+  const el = document.getElementById("skillsManageList");
+  el.innerHTML = state.skills.map((s,i)=> manageListRow(i,"skills",
+    '<input class="field s-name" type="text" value="'+esc(s.name)+'" />'+
+    '<input class="field pct-input s-pct" type="number" min="0" max="100" value="'+s.pct+'" />'
+  )).join("") || '<p class="empty-note">No skills yet. Add one below.</p>';
+  el.querySelectorAll(".manage-row").forEach(row=>{
+    const i = Number(row.getAttribute("data-idx"));
+    row.querySelector(".s-name").addEventListener("input", e=>{ state.skills[i].name = e.target.value; });
+    row.querySelector(".s-pct").addEventListener("input", e=>{ state.skills[i].pct = Math.max(0,Math.min(100, Number(e.target.value)||0)); });
+    row.querySelector(".icon-del").addEventListener("click", ()=>{ state.skills.splice(i,1); renderAdminSkills(); });
+  });
+  const iconSelect = document.getElementById("newProjectIcon");
+  if(iconSelect && !iconSelect.dataset.filled){ iconSelect.innerHTML = ICON_OPTIONS.map(o=>'<option value="'+o[0]+'">'+o[1]+'</option>').join(""); iconSelect.dataset.filled="1"; }
+}
+function fillIconSelectOnce(id){
+  const sel = document.getElementById(id);
+  if(sel && !sel.dataset.filled){ sel.innerHTML = ICON_OPTIONS.map(o=>'<option value="'+o[0]+'">'+o[1]+'</option>').join(""); sel.dataset.filled="1"; }
+}
+function renderAdminProjects(){
+  fillIconSelectOnce("newProjectIcon");
+  const el = document.getElementById("projectsManageList");
+  el.innerHTML = state.projects.map((p,i)=> manageListRow(i,"projects",
+    '<input class="field p-title" type="text" value="'+esc(p.title)+'" placeholder="Title" />'+
+    '<input class="field p-desc" type="text" value="'+esc(p.desc)+'" placeholder="Description" />'+
+    '<select class="field row-icon-select p-icon">'+ICON_OPTIONS.map(o=>'<option value="'+o[0]+'"'+(o[0]===p.icon?" selected":"")+'>'+o[1]+'</option>').join("")+'</select>'
+  )).join("") || '<p class="empty-note">No projects yet. Add one below.</p>';
+  el.querySelectorAll(".manage-row").forEach(row=>{
+    const i = Number(row.getAttribute("data-idx"));
+    row.querySelector(".p-title").addEventListener("input", e=>{ state.projects[i].title = e.target.value; });
+    row.querySelector(".p-desc").addEventListener("input", e=>{ state.projects[i].desc = e.target.value; });
+    row.querySelector(".p-icon").addEventListener("change", e=>{ state.projects[i].icon = e.target.value; });
+    row.querySelector(".icon-del").addEventListener("click", ()=>{ state.projects.splice(i,1); renderAdminProjects(); });
+  });
+}
+function renderAdminServices(){
+  fillIconSelectOnce("newServiceIcon");
+  const el = document.getElementById("servicesManageList");
+  el.innerHTML = state.services.map((s,i)=> manageListRow(i,"services",
+    '<input class="field sv-title" type="text" value="'+esc(s.title)+'" placeholder="Title" />'+
+    '<input class="field sv-desc" type="text" value="'+esc(s.desc)+'" placeholder="Description" />'+
+    '<select class="field row-icon-select sv-icon">'+ICON_OPTIONS.map(o=>'<option value="'+o[0]+'"'+(o[0]===s.icon?" selected":"")+'>'+o[1]+'</option>').join("")+'</select>'
+  )).join("") || '<p class="empty-note">No services yet. Add one below.</p>';
+  el.querySelectorAll(".manage-row").forEach(row=>{
+    const i = Number(row.getAttribute("data-idx"));
+    row.querySelector(".sv-title").addEventListener("input", e=>{ state.services[i].title = e.target.value; });
+    row.querySelector(".sv-desc").addEventListener("input", e=>{ state.services[i].desc = e.target.value; });
+    row.querySelector(".sv-icon").addEventListener("change", e=>{ state.services[i].icon = e.target.value; });
+    row.querySelector(".icon-del").addEventListener("click", ()=>{ state.services.splice(i,1); renderAdminServices(); });
+  });
+}
+function renderAdminExperience(){
+  const el = document.getElementById("experienceManageList");
+  el.innerHTML = state.experience.map((x,i)=> manageListRow(i,"experience",
+    '<input class="field x-role" type="text" value="'+esc(x.role)+'" placeholder="Role" />'+
+    '<input class="field x-org" type="text" value="'+esc(x.org)+'" placeholder="Organization" />'+
+    '<input class="field x-period" type="text" value="'+esc(x.period)+'" placeholder="Period" />'
+  )).join("") || '<p class="empty-note">No experience yet. Add one below.</p>';
+  el.querySelectorAll(".manage-row").forEach(row=>{
+    const i = Number(row.getAttribute("data-idx"));
+    row.querySelector(".x-role").addEventListener("input", e=>{ state.experience[i].role = e.target.value; });
+    row.querySelector(".x-org").addEventListener("input", e=>{ state.experience[i].org = e.target.value; });
+    row.querySelector(".x-period").addEventListener("input", e=>{ state.experience[i].period = e.target.value; });
+    row.querySelector(".icon-del").addEventListener("click", ()=>{ state.experience.splice(i,1); renderAdminExperience(); });
+  });
+}
+function renderAdminEducation(){
+  document.getElementById("editDegree").value = state.education.degree;
+  document.getElementById("editField").value = state.education.field;
+}
+function renderAdminAchievements(){
+  const el = document.getElementById("achievementsManageList");
+  el.innerHTML = state.achievements.map((a,i)=>
+    '<div class="manage-row wide" data-idx="'+i+'"><div class="fields"><input class="field a-text" type="text" value="'+esc(a)+'" /></div><button class="icon-del" aria-label="Delete"><i class="fa-solid fa-trash"></i></button></div>'
+  ).join("") || '<p class="empty-note">No achievements yet. Add one below.</p>';
+  el.querySelectorAll(".manage-row").forEach(row=>{
+    const i = Number(row.getAttribute("data-idx"));
+    row.querySelector(".a-text").addEventListener("input", e=>{ state.achievements[i] = e.target.value; });
+    row.querySelector(".icon-del").addEventListener("click", ()=>{ state.achievements.splice(i,1); renderAdminAchievements(); });
+  });
+}
+function renderAdminContact(){
+  document.getElementById("editEmail").value = state.email;
+  document.getElementById("editInstagram").value = state.social.instagram;
+  document.getElementById("editYoutube").value = state.social.youtube;
+  document.getElementById("editGithub").value = state.social.github;
+  document.getElementById("editLinkedin").value = state.social.linkedin;
+}
+function renderAdminSettings(){
+  document.getElementById("editName").value = state.name;
+  document.getElementById("editTagline").value = state.tagline;
+  document.getElementById("editBadge").value = state.badge;
+  document.getElementById("editHeroTagline").value = state.heroTagline;
+  document.getElementById("editHeroDesc").value = state.heroDesc;
+  document.getElementById("editLocation").value = state.location;
+}
+
+/* ============================= AVATAR UPLOAD ============================= */
+function handleAvatarFile(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const maxDim = 320;
+      let w = img.width, h = img.height;
+      if(w>h){ if(w>maxDim){ h = Math.round(h*maxDim/w); w = maxDim; } }
+      else{ if(h>maxDim){ w = Math.round(w*maxDim/h); h = maxDim; } }
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(img,0,0,w,h);
+      state.avatarImage = canvas.toDataURL("image/jpeg",0.85);
+      renderAvatarInto("avatarEditInitials","avatarEditImg");
+      renderAvatars();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ============================= EVENT WIRING ============================= */
+function wireEvents(){
+  // Theme toggle
+  const themeBtn = document.getElementById("themeToggleBtn");
+  const themeIcon = document.getElementById("themeIcon");
+  function applyTheme(mode){
+    document.documentElement.setAttribute("data-theme", mode);
+    themeIcon.className = mode==="light" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+  }
+  let theme = "dark";
+  try{ theme = localStorage ? theme : theme; }catch(e){}
+  applyTheme(theme);
+  themeBtn.addEventListener("click", ()=>{
+    theme = theme==="dark" ? "light" : "dark";
+    applyTheme(theme);
+  });
+
+  // Mobile nav
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const navLinks = document.getElementById("navLinks");
+  hamburgerBtn.addEventListener("click", ()=> navLinks.classList.toggle("open"));
+  navLinks.querySelectorAll("a").forEach(a=> a.addEventListener("click", ()=> navLinks.classList.remove("open")));
+
+  // Scroll-spy
+  const sectionIds = ["home","about","skills","projects","services","contact"];
+  const sections = sectionIds.map(id=>document.getElementById(id)).filter(Boolean);
+  const navAnchors = Array.from(document.querySelectorAll(".nav-links a"));
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navAnchors.forEach(a=> a.classList.toggle("active", a.getAttribute("data-nav")===id));
+      }
+    });
+  }, {rootMargin:"-45% 0px -45% 0px"});
+  sections.forEach(s=>spy.observe(s));
+
+  // Read more
+  document.getElementById("readMoreBtn").addEventListener("click", function(){
+    const extra = document.getElementById("aboutExtra");
+    const showing = extra.classList.toggle("show");
+    this.textContent = showing ? "Show Less" : "Read More";
+  });
+
+  // Download CV (no real file attached in this demo)
+  document.getElementById("downloadCvBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    toast("Add your CV file link in Settings to enable this button");
+  });
+
+  // Contact form
+  document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    state.dashboard.messages = (state.dashboard.messages||0) + 1;
+    saveState();
+    toast("Message sent! Mayur will get back to you soon.");
+    this.reset();
+  });
+
+  // View project buttons (delegated placeholder)
+  window.__portfolio = { viewProject: ()=> toast("Add a project URL in Admin \u2192 Projects to link this") };
+
+  // Admin open/close
+  const overlay = document.getElementById("adminOverlay");
+  const login = document.getElementById("adminLogin");
+  const loginForm = document.getElementById("adminLoginForm");
+  const loginEmail = document.getElementById("adminEmail");
+  const loginPassword = document.getElementById("adminPassword");
+  const loginError = document.getElementById("adminLoginError");
+  const ADMIN_EMAIL = "gohil7245@gmail.com";
+  const ADMIN_PASSWORD = "mayur8866";
+  let adminUnlocked = sessionStorage.getItem("mkg-admin-unlocked") === "1";
+
+  function showAdminLogin(){
+    login.classList.add("open"); login.setAttribute("aria-hidden","false");
+    setTimeout(()=>loginEmail.focus(),80);
+  }
+  function hideAdminLogin(){
+    login.classList.remove("open"); login.setAttribute("aria-hidden","true");
+    loginEmail.value=""; loginPassword.value=""; loginError.textContent="";
+  }
+  function openAdmin(){
+    if(!adminUnlocked){ showAdminLogin(); return; }
+    overlay.classList.add("open"); document.body.style.overflow="hidden";
+    switchAdminView(currentView()||"dashboard");
+  }
+  function closeAdmin(){ overlay.classList.remove("open"); document.body.style.overflow=""; }
+  document.getElementById("openAdminBtn").addEventListener("click", openAdmin);
+  loginForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    if(loginEmail.value.trim().toLowerCase() === ADMIN_EMAIL && loginPassword.value === ADMIN_PASSWORD){
+      adminUnlocked=true; sessionStorage.setItem("mkg-admin-unlocked","1"); hideAdminLogin();
+      overlay.classList.add("open"); document.body.style.overflow="hidden";
+      switchAdminView(currentView()||"dashboard"); toast("Admin unlocked");
+    }else{
+      loginError.textContent="Incorrect email or password. Try again."; loginPassword.select();
+    }
+  });
+  document.getElementById("adminLoginCancel").addEventListener("click", hideAdminLogin);
+  document.getElementById("passwordToggle").addEventListener("click",()=>{
+    const hidden=loginPassword.type==="password";
+    loginPassword.type=hidden?"text":"password";
+    document.getElementById("passwordToggle").innerHTML=hidden
+      ? '<i class="fa-solid fa-eye-slash"></i>' : '<i class="fa-solid fa-eye"></i>';
+  });
+  document.getElementById("adminCloseBtn").addEventListener("click", closeAdmin);
+  document.getElementById("adminBackdrop").addEventListener("click", closeAdmin);
+  document.getElementById("previewSiteBtn").addEventListener("click", ()=>{ closeAdmin(); window.scrollTo({top:0,behavior:"smooth"}); });
+  document.getElementById("adminLogoutBtn").addEventListener("click", ()=>{
+    closeAdmin(); adminUnlocked=false; sessionStorage.removeItem("mkg-admin-unlocked"); toast("Logged out");
+  });
+  document.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && overlay.classList.contains("open")) closeAdmin(); });
+
+  // Admin sidebar nav
+  document.querySelectorAll(".admin-nav-item[data-view]").forEach(btn=>{
+    btn.addEventListener("click", ()=> switchAdminView(btn.getAttribute("data-view")));
+  });
+  document.querySelectorAll("[data-goto]").forEach(btn=>{
+    btn.addEventListener("click", ()=> switchAdminView(btn.getAttribute("data-goto")));
+  });
+
+  // View All links -> jump to admin manage view
+  document.getElementById("skillsViewAll").addEventListener("click", ()=>{ openAdmin(); switchAdminView("skills"); });
+  document.getElementById("projectsViewAll").addEventListener("click", ()=>{ openAdmin(); switchAdminView("projects"); });
+
+  // Add New Section quick action
+  document.getElementById("qaAddSection").addEventListener("click", ()=>{
+    const title = prompt("Section title:");
+    if(!title) return;
+    const body = prompt("A short description for this section:") || "";
+    state.customSections = state.customSections || [];
+    state.customSections.push({title:title.trim(), body:body.trim()});
+    renderCustomSections(); renderDashboard(); saveState();
+    toast('Section "'+title+'" added');
+  });
+
+  // ---- About save / avatar ----
+  document.getElementById("changeAvatarBtn").addEventListener("click", ()=> document.getElementById("avatarFileInput").click());
+  document.getElementById("avatarFileInput").addEventListener("change", (e)=> handleAvatarFile(e.target.files[0]));
+  document.getElementById("resetAvatarBtn").addEventListener("click", ()=>{
+    state.avatarImage = null; renderAvatarInto("avatarEditInitials","avatarEditImg"); renderAvatars();
+  });
+  document.getElementById("saveAboutBtn").addEventListener("click", ()=>{
+    state.about = document.getElementById("editAboutText").value;
+    state.aboutExtra = document.getElementById("editAboutExtra").value;
+    renderAbout(); saveState(); toast("About section updated");
+  });
+
+  // ---- Skills ----
+  document.getElementById("addSkillBtn").addEventListener("click", ()=>{
+    const name = document.getElementById("newSkillName").value.trim();
+    const pct = Math.max(0,Math.min(100, Number(document.getElementById("newSkillPct").value)||0));
+    if(!name){ toast("Give the skill a name first"); return; }
+    state.skills.push({name, pct});
+    document.getElementById("newSkillName").value=""; document.getElementById("newSkillPct").value="";
+    renderAdminSkills();
+  });
+  document.getElementById("saveSkillsBtn").addEventListener("click", ()=>{ renderSkills(); saveState(); toast("Skills updated"); });
+
+  // ---- Projects ----
+  document.getElementById("addProjectBtn").addEventListener("click", ()=>{
+    const title = document.getElementById("newProjectTitle").value.trim();
+    const desc = document.getElementById("newProjectDesc").value.trim();
+    const icon = document.getElementById("newProjectIcon").value || "laptop";
+    const url = document.getElementById("newProjectUrl").value.trim();
+    if(!title){ toast("Give the project a title first"); return; }
+    state.projects.push({title, desc, icon, url});
+    document.getElementById("newProjectTitle").value="";
+    document.getElementById("newProjectDesc").value="";
+    document.getElementById("newProjectUrl").value="";
+    renderAdminProjects();
+  });
+  document.getElementById("saveProjectsBtn").addEventListener("click", ()=>{ renderProjects(); saveState(); toast("Projects updated"); });
+
+  // ---- Services ----
+  document.getElementById("addServiceBtn").addEventListener("click", ()=>{
+    const title = document.getElementById("newServiceTitle").value.trim();
+    const desc = document.getElementById("newServiceDesc").value.trim();
+    const icon = document.getElementById("newServiceIcon").value || "code";
+    if(!title){ toast("Give the service a title first"); return; }
+    state.services.push({title, desc, icon});
+    document.getElementById("newServiceTitle").value=""; document.getElementById("newServiceDesc").value="";
+    renderAdminServices();
+  });
+  document.getElementById("saveServicesBtn").addEventListener("click", ()=>{ renderServices(); saveState(); toast("Services updated"); });
+
+  // ---- Experience ----
+  document.getElementById("addExpBtn").addEventListener("click", ()=>{
+    const role = document.getElementById("newExpRole").value.trim();
+    const org = document.getElementById("newExpOrg").value.trim();
+    const period = document.getElementById("newExpPeriod").value.trim();
+    if(!role){ toast("Give the role a title first"); return; }
+    state.experience.push({role, org, period});
+    document.getElementById("newExpRole").value=""; document.getElementById("newExpOrg").value=""; document.getElementById("newExpPeriod").value="";
+    renderAdminExperience();
+  });
+  document.getElementById("saveExpBtn").addEventListener("click", ()=>{ renderAbout(); saveState(); toast("Experience updated"); });
+
+  // ---- Education ----
+  document.getElementById("saveEducationBtn").addEventListener("click", ()=>{
+    state.education.degree = document.getElementById("editDegree").value;
+    state.education.field = document.getElementById("editField").value;
+    renderHero(); saveState(); toast("Education updated");
+  });
+
+  // ---- Achievements ----
+  document.getElementById("addAchievementBtn").addEventListener("click", ()=>{
+    const val = document.getElementById("newAchievement").value.trim();
+    if(!val) return;
+    state.achievements.push(val);
+    document.getElementById("newAchievement").value="";
+    renderAdminAchievements();
+  });
+  document.getElementById("saveAchievementsBtn").addEventListener("click", ()=>{ renderAchievements(); saveState(); toast("Achievements updated"); });
+
+  // ---- Contact ----
+  document.getElementById("saveContactBtn").addEventListener("click", ()=>{
+    state.email = document.getElementById("editEmail").value;
+    state.social.instagram = document.getElementById("editInstagram").value;
+    state.social.youtube = document.getElementById("editYoutube").value;
+    state.social.github = document.getElementById("editGithub").value;
+    state.social.linkedin = document.getElementById("editLinkedin").value;
+    renderSocials(); renderContactSection(); saveState(); toast("Contact info updated");
+  });
+
+  // ---- Settings ----
+  document.getElementById("saveSettingsBtn").addEventListener("click", ()=>{
+    state.name = document.getElementById("editName").value || state.name;
+    state.tagline = document.getElementById("editTagline").value;
+    state.badge = document.getElementById("editBadge").value;
+    state.heroTagline = document.getElementById("editHeroTagline").value;
+    state.heroDesc = document.getElementById("editHeroDesc").value;
+    state.location = document.getElementById("editLocation").value;
+    renderPublicSite(); saveState(); toast("Settings updated");
+  });
+  document.getElementById("resetDataBtn").addEventListener("click", async ()=>{
+    if(!confirm("Reset everything back to the original demo content?")) return;
+    state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    renderPublicSite(); switchAdminView("dashboard");
+    try{ if(window.storage) await window.storage.delete(STORAGE_KEY, false); }catch(e){}
+    toast("All data reset to defaults");
+  });
+}
+
+/* ============================= INIT ============================= */
+
+function initMayurChatbot(){
+ const launch=document.getElementById("chatLaunch"),win=document.getElementById("chatWindow"),close=document.getElementById("chatClose"),msgs=document.getElementById("chatMsgs"),form=document.getElementById("chatForm"),input=document.getElementById("chatInput");
+ if(!launch||!win)return;
+ function add(t,w="bot"){const d=document.createElement("div");d.className="chat-bubble "+w;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+ launch.onclick=()=>{win.classList.add("open");if(!msgs.children.length)add("Hi! 👋 I’m Mayur’s portfolio assistant. Ask me about his education, tech interests, MKG Tech, skills, projects or contact details.")};
+ close.onclick=()=>win.classList.remove("open");
+ document.querySelectorAll(".chat-chip").forEach(b=>b.onclick=()=>{input.value=b.dataset.q;form.requestSubmit()});
+ function ans(q){const x=q.toLowerCase(),d=state;
+  if(/who|about|profile|introduce/.test(x))return `${d.name} is a ${d.education.degree} graduate in ${d.education.field}. He is interested in smartphones, laptops, PC hardware and practical technology, and is building ${d.channel} as a tech-focused content identity.`;
+  if(/education|degree|study|qualification|b.tech|btech/.test(x))return `Education: ${d.education.degree} — ${d.education.field}.`;
+  if(/mkg|channel|creator|content|instagram|youtube/.test(x))return `${d.channel} is Mayur’s technology-focused content identity around smartphones, hardware information, specifications and useful tech content.`;
+  if(/skill|skills|good at/.test(x))return "Skills listed on this portfolio: "+d.skills.map(s=>s.name).join(", ")+".";
+  if(/project|projects|work/.test(x))return "Current projects: "+d.projects.map(p=>p.title).join("; ")+".";
+  if(/phone|smartphone|mobile/.test(x))return "Mayur has a strong interest in smartphone hardware, specifications, comparisons and technical details.";
+  if(/laptop|pc|computer|hardware/.test(x))return "Mayur is interested in laptop and PC hardware, upgrades, specifications and troubleshooting.";
+  if(/contact|email|reach|hire/.test(x))return `You can contact Mayur at ${d.email}.`;
+  if(/location|where|india/.test(x))return `Mayur is based in ${d.location}.`;
+  return "I can answer questions about Mayur’s published profile. Try education, skills, MKG Tech, projects, smartphone/hardware interests or contact details.";
+ }
+ form.onsubmit=e=>{e.preventDefault();let q=input.value.trim();if(!q)return;add(q,"user");input.value="";setTimeout(()=>add(ans(q)),180)}
+}
+
+
+document.addEventListener("DOMContentLoaded", async function(){
+  await loadState();
+  state.dashboard.views = (state.dashboard.views||0) + 1;
+  renderPublicSite();
+  wireEvents();
+  initMayurChatbot();
+  saveState();
+});
+
+})();
+</script>
+</body>
+</html>
